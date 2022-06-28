@@ -37,10 +37,13 @@ namespace MultiSawTweak
         {
             ModConfig.InitConfig(Config);
 
+            Vector3 biggerSawSize = new Vector3(24, 24, 12);
+            biggerSawSize *= ModConfig.sawSize.Value;
+
             On.EntityStates.Toolbot.FireBuzzsaw.OnEnter += (orig, self) =>
             {
                 orig(self);
-                self.attack.hitBoxGroup.hitBoxes[0].transform.localScale *= ModConfig.sawSize.Value;
+                self.attack.hitBoxGroup.hitBoxes[0].transform.localScale = biggerSawSize;
             };
 
             On.EntityStates.Toolbot.FireBuzzsaw.FixedUpdate += (orig, self) =>
